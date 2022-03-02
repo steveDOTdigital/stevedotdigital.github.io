@@ -10,64 +10,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   
   <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.js"></script>
-
-  <style type="text/css">
-    body {
-      background: #FFF;
-      color: #666;
-      font-family: Courier New;
-      font-size: 12px;
-      line-height: 13px;
-    }
-
-    .intro {
-      height: 13px;
-      overflow: hidden;
-      position: fixed;
-      top: 5px;
-      left: 5px;
-      right: 5px;
-      padding: 0px 5px;
-      white-space: nowrap;
-      text-overflow: ellipsis;
-    }
-
-    .status {
-      overflow: hidden;
-      position: fixed;
-      top: 8px;
-      left: 5px;
-      bottom: 10px;
-      width: calc(50% - 10px);
-      padding: 0 5px;
-      white-space: nowrap;
-      text-overflow: ellipsis;
-    }
-    #setup {
-      position: fixed;
-      top: 19px;
-      right: 6px;
-      height: calc(100% - 29px);
-      width: calc(50% - 15px);
-      padding: 5;
-      margin: 0;
-      border: 1px dotted blue;
-      background: rgba(0,0,255,0.05);
-    }
-    .status ul {
-      color: blue;
-      list-style-type: none;
-      padding-left: 0px;
-    }
-    .status ul li {
-      white-space: nowrap;
-      text-overflow: ellipsis;
-      display: block;
-      overflow: hidden;
-    }
-
-    /* EOS */
-  </style>
 	
 	<!-- Global site tag (gtag.js) - Google Analytics -->
 	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-71049994-15"></script>
@@ -203,5 +145,60 @@ function padLeftZero(i) {
 
   //]]></script>
 
+	<style type="text/css">
+		body {
+			background: #FFF;
+			color: #666;
+			font-family: Courier New;
+			font-size: 12px;
+			line-height: 13px;
+		}
+
+		.intro {
+			height: 13px;
+			overflow: hidden;
+			position: fixed;
+			top: 5px;
+			left: 5px;
+			right: 5px;
+			padding: 0px 5px;
+			white-space: nowrap;
+			text-overflow: ellipsis;
+		}
+
+		.status {
+			overflow: hidden;
+			position: fixed;
+			top: 8px;
+			left: 5px;
+			bottom: 10px;
+			width: calc(50% - 10px);
+			padding: 0 5px;
+			white-space: nowrap;
+			text-overflow: ellipsis;
+		}
+		#setup {
+			position: fixed;
+			top: 19px;
+			right: 6px;
+			height: calc(100% - 29px);
+			width: calc(50% - 15px);
+			padding: 5;
+			margin: 0;
+			border: 1px dotted red;
+			background: rgba(255,0,0,0.05);
+		}
+		.status ul {
+			color: blue;
+			list-style-type: none;
+			padding-left: 0px;
+		}
+		.status ul li {
+			white-space: nowrap;
+			text-overflow: ellipsis;
+			display: block;
+			overflow: hidden;
+		}
+	</style>
 </body>
 </html>
