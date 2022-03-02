@@ -150,7 +150,8 @@ function crawl() {
 
       //$('#iframe').attr('src', URL);
       if (popup != null) {
-        popup.href.location = URL;
+      		//popup.href.location = URL;
+	      popup = window.open(URL, 'Crawler');
       } else {
         popup = window.open('', 'Crawler');
         try {
