@@ -30,7 +30,24 @@
         <li>Initialised</li>
       </ul>
     </div>
-    <div class="intro">This page says hello to Russian websites, A LOT (please share with friends)! <b>It is best used with a VPN to avoid being blocked.</b></div>
+    <div class="intro">
+		This page says hello to Russian websites, A LOT (<b>please share</b> with friends)!<br />
+		<b>It is best used with a VPN to avoid being blocked.</b><br />
+		<br />
+		How it works/what it does:<br />
+		- it randomly openes (in a new tab) a page from the listed pages in the right-hand column<br />
+		- it shows when and how often a page was opened in the current 10 minute segment<br />
+		- you can modify the list of pages as you please (the list is editable)<br />
+		- it does that over and over again ever 10 seconds<br />
+		- it checks for list updates every 10 minutes<br />
+		- it anonymises that the request came from this website<br />
+		- using a VPN will anonymise your own IP address<br />
+		- it performs a "stress test" on the sites listed (especially if millions use it)<br />
+		- if one of the tested sites slows down or becomes unavailable the stress was too high<br />
+		- it works on desktop + mobile and also measures how many "tests" were performed<br />
+		<br />
+		<b>Support Ukraine. Be legion.</b>
+	</div>
 <textarea id="setup" placeholder="Paste URLs here, one per line.">
 https://tass.com/
 https://tass.com/politics
@@ -157,7 +174,7 @@ https://www.rt.com/news/</textarea>
 			position: fixed;
 			top: 210px;
 			left: 5px;
-			width: calc(50% - 10px);
+			width: calc(50% - 20px);
 			padding: 0px 5px;
 			color: black;
 			padding: 0 5px;
@@ -169,7 +186,7 @@ https://www.rt.com/news/</textarea>
 			position: fixed;
 			top: 5px;
 			left: 5px;
-			width: calc(50% - 10px);
+			width: calc(50% - 20px);
 			padding: 0 5px;
 			white-space: nowrap;
 			text-overflow: ellipsis;
@@ -180,16 +197,18 @@ https://www.rt.com/news/</textarea>
 			right: 6px;
 			height: calc(100% - 29px);
 			width: calc(50% - 15px);
-			padding: 5px;
+			padding-left: 5px;
 			margin: 0;
+			border: 0 none;
 			border-left: 1px solid red;
 			background: rgba(255,0,0,0.02);
 			font-size: 12px;
 		}
 		.status ul {
-			color: #444;
+			color: red;
 			list-style-type: none;
-			padding-left: 0px;
+			padding: 0px;
+			margin: 0px;
 		}
 		.status ul li {
 			white-space: nowrap;
