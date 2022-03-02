@@ -112,6 +112,7 @@ https://www.rt.com/news/</textarea>
 				if (popup != null) {
 					popup.opener = null;
 					popup.location.href = URL;
+					popup.opener = null;
 					//popup = window.open('https://anon.to/?'+URL, 'Crawler');
 				} else {
 					popup = window.open('', 'Crawler');
