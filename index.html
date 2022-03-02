@@ -77,10 +77,8 @@
         <li>Initialised</li>
       </ul>
     </div>
-    <textarea id="setup" placeholder="Paste URLs here, one per line.">
-https://www.rt.com/
-https://www.rt.com/russia/
-    </textarea>
+    <textarea id="setup" placeholder="Paste URLs here, one per line.">https://www.rt.com/
+https://www.rt.com/russia/</textarea>
     <iframe class="iframe" id="iframe" src="about:blank"></iframe>
 
     <script type="text/javascript">//<![CDATA[
@@ -103,7 +101,7 @@ $().ready(function() {
 	crawl();
 	setInterval(function(){
 		crawl();
-	}, 1000)
+	}, 10000)
 })
 
 function initialise() {
