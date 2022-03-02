@@ -89,6 +89,8 @@
       </ul>
     </div>
 <textarea id="setup" placeholder="Paste URLs here, one per line.">
+https://tass.com/
+https://tass.ru/
 https://www.rt.com/
 https://www.rt.com/russia/
 https://www.rt.com/news/</textarea>
@@ -114,7 +116,11 @@ $().ready(function() {
 	crawl();
 	setInterval(function(){
 		crawl();
-	}, 10000)
+	}, 10000);
+	
+	setTimeout(function(){
+		location.reload();
+	}, 3600000);
 })
 
 function initialise() {
