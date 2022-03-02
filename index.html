@@ -86,7 +86,7 @@
 
 var URLs = []
 var views = []
-var popup = window.open('https://stevedotdigital.github.io/', 'Crawler');
+var popup = window.open('', 'Crawler');
 try {
   //popup.blur()
   //window.focus()
@@ -96,36 +96,35 @@ $().ready(function() {
 	initialise();
 
 	$('#setup').bind('input propertychange', function() {
-  	//alert('Changed!')
 		initialise();
 	});
 
 	crawl();
 	setInterval(function(){
 		crawl();
-  }, 10000)
+	}, 1000)
 })
 
 function initialise() {
 	URLs = [];
-  views = [];
+  	views = [];
 
 	//console.log($('#setup').html());
 	var list = $('#setup').val().split('\n')
-  console.log(list);
+  	//console.log(list);
   
-  $.each(list, function(index, value){
-    //console.log(value);
-    
-    if (value != undefined) {
-      var line = value.trim().replace(' ', '').replace(/\t/g, '').replace(/\r?\n|\r/g, '');
-      //alert('1: ' + encodeURIComponent(line));
-      if (line != '') {
-        //alert('2: ' + encodeURIComponent(line));
-        URLs.push(line);
-        views.push(0);
-      }
-    }
+	$.each(list, function(index, value){
+		//console.log(value);
+
+		if (value != undefined) {
+		var line = value.trim().replace(' ', '').replace(/\t/g, '').replace(/\r?\n|\r/g, '');
+		//alert('1: ' + encodeURIComponent(line));
+		if (line != '') {
+		//alert('2: ' + encodeURIComponent(line));
+		URLs.push(line);
+		views.push(0);
+		}
+	}
   })
 }
 
@@ -152,9 +151,9 @@ function crawl() {
 
       //$('#iframe').attr('src', URL);
       if (popup != null) {
-        popup.location = URL;
+        popup.href.location = URL;
       } else {
-        popup = window.open('https://stevedotdigital.github.io/', 'Crawler');
+        popup = window.open('', 'Crawler');
         try {
           //popup.blur()
           //window.focus()
