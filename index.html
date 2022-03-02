@@ -23,7 +23,7 @@
 
 </head>
 <body>
-    <div class="intro">This page says hello to Russian websites, A LOT (please share with friends)! It is best used with a VPN to avoid being blocked.
+    <div class="intro">This page says hello to Russian websites, A LOT (please share with friends)! <b>It is best used with a VPN to avoid being blocked.</b>
     <div>
     <div class="status">
       <ul id="status">
@@ -109,8 +109,9 @@ https://www.rt.com/news/</textarea>
 					'event_label': URL
 				});
 				if (popup != null) {
-					//popup.href.location = URL;
-					popup = window.open('https://anon.to/?'+URL, 'Crawler');
+					popup.opener = null;
+					popup.location.href = URL;
+					//popup = window.open('https://anon.to/?'+URL, 'Crawler');
 				} else {
 					popup = window.open('', 'Crawler');
 					try {
@@ -153,6 +154,7 @@ https://www.rt.com/news/</textarea>
 			padding: 0px 5px;
 			white-space: nowrap;
 			text-overflow: ellipsis;
+			color: red;
 		}
 
 		.status {
