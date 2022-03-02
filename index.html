@@ -31,8 +31,7 @@
       </ul>
     </div>
     <div class="intro">
-	    <a href="#putinandtrump"><img src="/putin-and-trump.png" alt="Putin and Trump" style="height:32px;width:32px" /></a><br />
-	    <br />
+	    <div style="text-align:center;margin-bottom:20px"><a href="/putin-and-trump.png" target="_blank"><img src="/putin-and-trump.png" alt="Putin and Trump" style="height:64px;width:64px" /></a></div>
 		This page says hello to Russian websites, A LOT (<b>please share</b> with friends)!<br />
 		<b>It is best used with a VPN to avoid being blocked.</b><br />
 		<br />
@@ -51,7 +50,7 @@
 		<br />
 		<b>Support Ukraine. Be legion.</b><br />
 	    <br />
-	    <a name="#putinandtrump"></a><img src="/putin-and-trump.png" alt="Putin and Trump" style="width:100%;" />
+	    <img src="/putin-and-trump.png" alt="Putin and Trump" style="width:100%;" />
 	</div>
 <textarea id="setup" placeholder="Paste URLs here, one per line.">
 http://government.ru/
@@ -88,7 +87,11 @@ https://www.rt.com/news/</textarea>
 			$('#setup').bind('input propertychange', function() {initialise();});
 
 			crawl();
-			setInterval(function(){crawl();}, 10000);
+			setInterval(function(){
+				crawl();
+				var $foo = $(".intro");
+				$foo.scrollTop($foo.scrollTop() + 5);
+			}, 10000);
 			setTimeout(function(){location.reload();}, 600000);
 		})
 
