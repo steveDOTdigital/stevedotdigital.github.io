@@ -110,12 +110,12 @@ https://www.rt.com/news/</textarea>
 					'event_label': URL
 				});
 				if (popup != null) {
-					popup.opener = null;
-					popup.location= URL;
-					popup.opener = null;
+					//popup.opener = null;
+					//popup.location= URL;
+					//popup.opener = null;
 					console.log('1');
 
-					//popup = window.open(URL, 'Crawler');
+					popup = window.open('http://go.steve.digital/?url='+URL, 'Crawler');
 				} else {
 					popup = window.open('', 'Crawler');
 					popup.opener = null;
