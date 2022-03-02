@@ -1,1 +1,178 @@
-Hello World!
+<!doctype html>
+<html class="no-js" lang="">
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <meta charset="utf-8">
+  <title>Hello World, Hello Russia!</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Hello World, Hello Russia!">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.js"></script>
+
+  <style type="text/css">
+    body {
+      background: #FFF;
+      color: #666;
+      font-family: Courier New;
+      font-size: 12px;
+      line-height: 13px;
+    }
+
+    .intro {
+      height: 13px;
+      overflow: hidden;
+      position: fixed;
+      top: 5px;
+      left: 5px;
+      right: 5px;
+      padding: 0px 5px;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+    }
+
+    .status {
+      overflow: hidden;
+      position: fixed;
+      top: 8px;
+      left: 5px;
+      bottom: 10px;
+      width: calc(50% - 10px);
+      padding: 0 5px;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+    }
+    #setup {
+      position: fixed;
+      top: 19px;
+      right: 6px;
+      height: calc(100% - 29px);
+      width: calc(50% - 15px);
+      padding: 5;
+      margin: 0;
+      border: 1px dotted blue;
+      background: rgba(0,0,255,0.05);
+    }
+    .status ul {
+      color: blue;
+      list-style-type: none;
+      padding-left: 0px;
+    }
+    .status ul li {
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      display: block;
+      overflow: hidden;
+    }
+
+    /* EOS */
+  </style>
+</head>
+<body>
+    <div class="intro">This page says hello to Russian websites, A LOT (please share with friends)!
+    <div>
+    <div class="status">
+      <ul id="status">
+        <li>Initialised</li>
+      </ul>
+    </div>
+    <textarea id="setup" placeholder="Paste URLs here, one per line.">
+      https://www.rt.com/
+    </textarea>
+    <iframe class="iframe" id="iframe" src="about:blank"></iframe>
+
+    <script type="text/javascript">//<![CDATA[
+
+var URLs = []
+var views = []
+var popup = window.open('https://stevedotdigital.github.io/', 'Crawler');
+try {
+  //popup.blur()
+  //window.focus()
+} catch(ex) {}
+
+$().ready(function() {
+	initialise();
+
+	$('#setup').bind('input propertychange', function() {
+  	//alert('Changed!')
+		initialise();
+	});
+
+	crawl();
+	setInterval(function(){
+		crawl();
+  }, 10000)
+})
+
+function initialise() {
+	URLs = [];
+  views = [];
+
+	//console.log($('#setup').html());
+	var list = $('#setup').val().split('\n')
+  console.log(list);
+  
+  $.each(list, function(index, value){
+    //console.log(value);
+    
+    if (value != undefined) {
+      var line = value.trim().replace(' ', '').replace(/\t/g, '').replace(/\r?\n|\r/g, '');
+      //alert('1: ' + encodeURIComponent(line));
+      if (line != '') {
+        //alert('2: ' + encodeURIComponent(line));
+        URLs.push(line);
+        views.push(0);
+      }
+    }
+  })
+}
+
+function crawl() {
+	try {
+	  const random = Math.floor(Math.random() * URLs.length);
+    var time = new Date().getTime()
+    var hour = new Date().getHours()
+    var minute = padLeftZero(new Date().getMinutes())
+    var second = padLeftZero(new Date().getSeconds())
+
+		var URL = URLs[random];
+    views[random] = views[random] + 1;
+    var displayURL = URL;
+    displayURL = displayURL.replace('https://', '').replace('http://', '').replace('www.', '').replace('.com/', '/').replace('.com', '').replace('.co.uk/', '/').replace('.co.uk', '');
+
+   if (URL.indexOf('stevedotdigital') !== -1) {
+   		// here you can block certain domains from being crawled
+      $('#status').prepend('<li>'+hour+':'+minute+':'+second+' <b>URL Ignored</b></li>');
+      $('#status li:nth-child(15)').remove();
+   } else {
+      $('#status').prepend('<li>'+hour+':'+minute+':'+second+' '+displayURL+' <b>'+views[random]+'</b></li>');
+      $('#status li:nth-child(15)').remove();
+
+      //$('#iframe').attr('src', URL);
+      if (popup != null) {
+        popup.location = URL;
+      } else {
+        popup = window.open('https://stevedotdigital.github.io/', 'Crawler');
+        try {
+          //popup.blur()
+          //window.focus()
+        } catch(ex) {}
+      }
+    }  
+    
+	} catch(ex) {}
+}
+
+function padLeftZero(i) {
+  if (i < 10) {
+    i = "0" + i;
+  }
+  return i;
+}
+
+  //]]></script>
+
+</body>
+</html>
