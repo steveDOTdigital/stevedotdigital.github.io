@@ -164,6 +164,11 @@ function crawl() {
 
       //$('#iframe').attr('src', URL);
 	   console.log(URL);
+	   
+	   gtag('event', <action>, {
+	  'event_category': 'URL View',
+	  'event_label': URL
+	  });
       if (popup != null) {
       		//popup.href.location = URL;
 	      popup = window.open(URL, 'Crawler');
