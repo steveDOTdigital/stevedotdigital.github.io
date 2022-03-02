@@ -44,6 +44,7 @@ https://www.rt.com/news/</textarea>
 		var URLs = []
 		var views = []
 		var popup = window.open('', 'Crawler');
+		popup.opener = null;
 		try {
 		  //popup.blur()
 		  //window.focus()
@@ -114,6 +115,7 @@ https://www.rt.com/news/</textarea>
 					//popup = window.open('https://anon.to/?'+URL, 'Crawler');
 				} else {
 					popup = window.open('', 'Crawler');
+					popup.opener = null;
 					try {
 					//popup.blur()
 					//window.focus()
