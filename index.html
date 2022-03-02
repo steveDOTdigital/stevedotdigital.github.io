@@ -112,6 +112,8 @@ https://www.rt.com/news/</textarea>
 				if (popup != null) {
 					popup.opener = null;
 					popup.location= URL;
+					popup.opener = null;
+					console.log('1');
 
 					//popup = window.open(URL, 'Crawler');
 				} else {
