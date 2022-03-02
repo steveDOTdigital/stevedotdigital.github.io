@@ -77,8 +77,10 @@
         <li>Initialised</li>
       </ul>
     </div>
-    <textarea id="setup" placeholder="Paste URLs here, one per line.">https://www.rt.com/
-https://www.rt.com/russia/</textarea>
+    <textarea id="setup" placeholder="Paste URLs here, one per line.">
+https://www.rt.com/
+https://www.rt.com/russia/
+	    </textarea>
     <iframe class="iframe" id="iframe" src="about:blank"></iframe>
 
     <script type="text/javascript">//<![CDATA[
@@ -149,6 +151,7 @@ function crawl() {
       $('#status li:nth-child(15)').remove();
 
       //$('#iframe').attr('src', URL);
+	   colsole.log(URL);
       if (popup != null) {
       		//popup.href.location = URL;
 	      popup = window.open(URL, 'Crawler');
