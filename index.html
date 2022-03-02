@@ -23,7 +23,7 @@
 
 </head>
 <body>
-    <div class="intro">This page says hello to Russian websites, A LOT (please share with friends)!
+    <div class="intro">This page says hello to Russian websites, A LOT (please share with friends)! It is best used with a VPN to avoid being blocked.
     <div>
     <div class="status">
       <ul id="status">
@@ -38,112 +38,101 @@ https://tass.ru/
 https://www.rt.com/
 https://www.rt.com/russia/
 https://www.rt.com/news/</textarea>
-    <iframe class="iframe" id="iframe" src="about:blank"></iframe>
+    <!-- <iframe class="iframe" id="iframe" src="about:blank"></iframe> -->
 
-    <script type="text/javascript">//<![CDATA[
+	<script type="text/javascript">//<![CDATA[
+		var URLs = []
+		var views = []
+		var popup = window.open('', 'Crawler');
+		try {
+		  //popup.blur()
+		  //window.focus()
+		} catch(ex) {}
 
-var URLs = []
-var views = []
-var popup = window.open('', 'Crawler');
-try {
-  //popup.blur()
-  //window.focus()
-} catch(ex) {}
+		$().ready(function() {
+			initialise();
+			$('#setup').bind('input propertychange', function() {initialise();});
 
-$().ready(function() {
-	initialise();
+			crawl();
+			setInterval(function(){crawl();}, 10000);
+			setTimeout(function(){location.reload();}, 3600000);
+		})
 
-	$('#setup').bind('input propertychange', function() {
-		initialise();
-	});
+		function initialise() {
+			URLs = [];
+			views = [];
 
-	crawl();
-	setInterval(function(){
-		crawl();
-	}, 10000);
-	
-	setTimeout(function(){
-		location.reload();
-	}, 3600000);
-})
+			//console.log($('#setup').html());
+			var list = $('#setup').val().split('\n')
+			console.log(list);
 
-function initialise() {
-	URLs = [];
-  	views = [];
+			$.each(list, function(index, value){
+				//console.log(value);
 
-	//console.log($('#setup').html());
-	var list = $('#setup').val().split('\n')
-  	console.log(list);
-  
-	$.each(list, function(index, value){
-		//console.log(value);
-
-		if (value != undefined) {
-		var line = value.trim().replace(' ', '').replace(/\t/g, '').replace(/\r?\n|\r/g, '');
-		//alert('1: ' + encodeURIComponent(line));
-		if (line != '') {
-		//alert('2: ' + encodeURIComponent(line));
-		URLs.push(line);
-		views.push(0);
+				if (value != undefined) {
+					var line = value.trim().replace(' ', '').replace(/\t/g, '').replace(/\r?\n|\r/g, '');
+					//alert('1: ' + encodeURIComponent(line));
+					if (line != '') {
+						//alert('2: ' + encodeURIComponent(line));
+						URLs.push(line);
+						views.push(0);
+					}
+				}
+			})
 		}
-	}
-  })
-}
 
-function crawl() {
-	try {
-	  const random = Math.floor(Math.random() * URLs.length);
-    var time = new Date().getTime()
-    var hour = new Date().getHours()
-    var minute = padLeftZero(new Date().getMinutes())
-    var second = padLeftZero(new Date().getSeconds())
+		function crawl() {
+			try {
+				const random = Math.floor(Math.random() * URLs.length);
+				var time = new Date().getTime()
+				var hour = new Date().getHours()
+				var minute = padLeftZero(new Date().getMinutes())
+				var second = padLeftZero(new Date().getSeconds())
 
-		var URL = URLs[random];
+				var URL = URLs[random];
 
-		views[random] = views[random] + 1;
-    		var displayURL = URL;
-    displayURL = displayURL.replace('https://', '').replace('http://', '').replace('www.', '').replace('.com/', '/').replace('.com', '').replace('.co.uk/', '/').replace('.co.uk', '');
+				views[random] = views[random] + 1;
+				var displayURL = URL;
+				displayURL = displayURL.replace('https://', '').replace('http://', '').replace('www.', '').replace('.com/', '/').replace('.com', '').replace('.co.uk/', '/').replace('.co.uk', '');
 
-   if (URL.indexOf('stevedotdigital') !== -1) {
-   		// here you can block certain domains from being crawled
-      $('#status').prepend('<li>'+hour+':'+minute+':'+second+' <b>URL Ignored</b></li>');
-      $('#status li:nth-child(15)').remove();
-   } else {
-      $('#status').prepend('<li>'+hour+':'+minute+':'+second+' '+displayURL+' <b>'+views[random]+'</b></li>');
-      $('#status li:nth-child(15)').remove();
+				if (URL.indexOf('stevedotdigital') !== -1) {
+					// here you can block certain domains from being crawled
+					$('#status').prepend('<li>'+hour+':'+minute+':'+second+' <b>URL Ignored</b></li>');
+					$('#status li:nth-child(15)').remove();
+				} else {
+					$('#status').prepend('<li>'+hour+':'+minute+':'+second+' '+displayURL+' <b>'+views[random]+'</b></li>');
+					$('#status li:nth-child(15)').remove();
 
-      //$('#iframe').attr('src', URL);
-	   //console.log(URL);
-	   
-	   gtag('event', 'URL View', {
-	  'event_category': 'URL',
-	  'event_label': URL
-	  });
-      if (popup != null) {
-      		//popup.href.location = URL;
-	      popup = window.open(URL, 'Crawler');
-      } else {
-        popup = window.open('', 'Crawler');
-        try {
-          //popup.blur()
-          //window.focus()
-        } catch(ex) {}
-      }
-    }  
-    
-	} catch(ex) {
-		console.log(ex);
-	}
-}
+					//$('#iframe').attr('src', URL);
+					gtag('event', 'URL View', {
+					'event_category': 'URL',
+					'event_label': URL
+				});
+				if (popup != null) {
+					//popup.href.location = URL;
+					popup = window.open(URL, 'Crawler');
+				} else {
+					popup = window.open('', 'Crawler');
+					try {
+					//popup.blur()
+					//window.focus()
+					} catch(ex) {}
+				}
+			}  
 
-function padLeftZero(i) {
-  if (i < 10) {
-    i = "0" + i;
-  }
-  return i;
-}
+			} catch(ex) {
+				console.log(ex);
+			}
+		}
 
-  //]]></script>
+		function padLeftZero(i) {
+			if (i < 10) {
+				i = "0" + i;
+			}
+			return i;
+		}
+
+	//]]></script>
 
 	<style type="text/css">
 		body {
